@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : 4_Vector_List.cpp
-// Author      : 
-// Version     :
+// Author      : Julia Nichols
+// Version     : 9/30/21
 // Copyright   : Your copyright notice
 // Description : Hello World in C++, Ansi-style
 //============================================================================
