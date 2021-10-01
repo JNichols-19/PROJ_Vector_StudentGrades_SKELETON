@@ -57,9 +57,30 @@ double stringToDouble(const char *myString) {
  *         SUCCESS
  */
 int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, char separator_char=KP::SEPERATOR_CHAR ) {
-	ifstream myfile;
-	myfile.open(file, ios::in)
+	ifstream myInFile; // Reading file Use
+	myInFile.open(file, ios::in); // .open(filename, mode)
+
 	std::string line;
+	std::string token;
+	KP::studentData myStudentData; // Used KP:: because all constants are in namespace KP
+	stringstream ss;
+
+	// Use stringstream to parse each line 
+	while (!myInFile.eof()) {
+		// get a line from the file (name, midterm1, midterm2, and possibly finalgrade)
+		getline(myInFile, line);
+		ss.str(line);
+
+		// get rid of the old values
+		myStudentData.clear();
+
+		// get the name
+		getline(ss, myStudentData.name, ' ');
+
+		// get midterm1
+		getline(ss, token, ' ');
+		myStudentData.midterm1 = stringToInt(token.c_str());
+	}
 
 	return int(0);
 }
