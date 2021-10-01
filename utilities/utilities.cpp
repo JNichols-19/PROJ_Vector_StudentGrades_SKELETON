@@ -80,19 +80,19 @@ int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, ch
 		myStudentData.clear();
 
 		// get the name
-		getline(ss, myStudentData.name, ' ');
+		getline(ss, myStudentData.name, separator_char);
 
 		// get midterm1
-		getline(ss, token, ' ');
+		getline(ss, token, separator_char);
 		myStudentData.midterm1 = stringToInt(token.c_str());
 
 		// get midterm2
-		getline(ss, token, ' ');
+		getline(ss, token, separator_char);
 		myStudentData.midterm2 = stringToInt(token.c_str());
 
 		// get finalgrade
 		// If statement? 
-		getline(ss, token, ' ');
+		getline(ss, token, separator_char);
 		myStudentData.finalgrade = stringToInt(token.c_str());
 	}
 
