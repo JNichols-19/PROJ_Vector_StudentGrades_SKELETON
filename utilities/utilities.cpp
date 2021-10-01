@@ -60,6 +60,11 @@ int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, ch
 	ifstream myInFile; // Reading file Use
 	myInFile.open(file, ios::in); // .open(filename, mode)
 
+	// Will return COULD_NOT_OPEN_FILE if the file isn't open after running .open()
+	if(!myInFile.is_open()) {
+		return KP::COULD_NOT_OPEN_FILE;
+	}
+
 	std::string line;
 	std::string token;
 	KP::studentData myStudentData; // Used KP:: because all constants are in namespace KP
@@ -90,6 +95,8 @@ int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, ch
 		getline(ss, token, ' ');
 		myStudentData.finalgrade = stringToInt(token.c_str());
 	}
+
+
 
 	return int(0);
 }
