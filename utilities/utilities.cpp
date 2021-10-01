@@ -95,10 +95,8 @@ int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, ch
 		getline(ss, token, separator_char);
 		myStudentData.finalgrade = stringToInt(token.c_str());
 	}
-
-
-
-	return int(0);
+	myInFile.close(); // close when gone through all of the file
+	return KP::SUCCESS;
 }
 
 /***
