@@ -80,6 +80,15 @@ int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, ch
 		// get midterm1
 		getline(ss, token, ' ');
 		myStudentData.midterm1 = stringToInt(token.c_str());
+
+		// get midterm2
+		getline(ss, token, ' ');
+		myStudentData.midterm2 = stringToInt(token.c_str());
+
+		// get finalgrade
+		// If statement? 
+		getline(ss, token, ' ');
+		myStudentData.finalgrade = stringToInt(token.c_str());
 	}
 
 	return int(0);
