@@ -57,6 +57,10 @@ double stringToDouble(const char *myString) {
  *         SUCCESS
  */
 int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, char separator_char=KP::SEPERATOR_CHAR ) {
+	ifstream myfile;
+	myfile.open(file, ios::in)
+	std::string line;
+
 	return int(0);
 }
 
