@@ -154,12 +154,16 @@ int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, c
 	std::vector<KP::studentData>::iterator iter = allstudentData.begin();
 
 	//myOutfile << "Writing this to a file.\n";
-	
+
 	// Uses the iterator to go through allstudentData and writes the information to the file
 	for (iter = allstudentData.begin(); iter != allstudentData.end(); ++iter){
 		std::string midterm1 = DoubleToString((*iter).midterm1);
 		std::string midterm2 = DoubleToString((*iter).midterm2);
 		std::string finalgrade = DoubleToString((*iter).finalgrade);
+
+		// what the iterator is checking for
+		myOutfile << (*iter).name << " " << midterm1 << " " << midterm2 << " " << finalgrade << "\n";
+
 	}
 
 	myOutfile.close();
