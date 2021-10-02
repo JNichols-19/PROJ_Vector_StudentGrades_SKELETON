@@ -80,20 +80,21 @@ int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, ch
 		ss.str(line);
 
 		// get the name
-		getline(ss, myStudentData.name, ' ');
+		std::getline(ss, myStudentData.name, ' ');
 
 		// get midterm1
-		getline(ss, token, ' ');
+		std::getline(ss, token, ' ');
 		myStudentData.midterm1 = stringToInt(token.c_str());
 
 		// get midterm2
-		getline(ss, token, ' ');
+		std::getline(ss, token, ' ');
 		myStudentData.midterm2 = stringToInt(token.c_str());
 
 		// get finalgrade
 		// If statement? 
-		getline(ss, token, ' ');
-		myStudentData.finalgrade = stringToInt(token.c_str());
+		if(std::getline(ss, token, ' ')) {
+			myStudentData.finalgrade = stringToInt(token.c_str());
+		}
 	}
 	myInFile.close(); // close when gone through all of the file
 	return KP::SUCCESS;
@@ -127,7 +128,7 @@ int calculateFinalGrade(std::vector<KP::studentData> &allstudentData) {
  */
 int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, char separator_char=KP::SEPERATOR_CHAR) {
 	ofstream myOutfile; 
-	myOutfile.open(file, ios::in); // .open(filename, mode)
+	myOutfile.open(file, ios::out); // .open(filename, mode)
 
 	// Will return COULD_NOT_OPEN_FILE if the file isn't open after running .open()
 	if(!myOutfile.is_open()) {
