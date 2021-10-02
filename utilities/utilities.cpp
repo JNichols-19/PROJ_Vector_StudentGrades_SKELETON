@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : utilities.cpp
 // Author      : Julia Nichols
-// Version     : 10/1/21
+// Version     : 10/2/21
 // Copyright   : Your copyright notice
 //============================================================================
 
@@ -24,7 +24,7 @@ std::string DoubleToString(double Number) {
 }
 
 //if myString does not contain a string rep of number returns 0
-//if int not large enough has undefined behaviour, 
+//if int not large enough has undefined behavior,
 //this is a very fragile function
 //ex. string a="3";
 //    int i = stringToInt(a.c_str()); //i contains 3
@@ -150,9 +150,19 @@ int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, c
 			return KP::VECTOR_CONTAINS_NO_STUDENTS; 
 	}
 
-	myOutfile << "Writing this to a file.\n";
-	myOutfile.close();
+	// Creates an iterator to go through the vector of students
+	std::vector<KP::studentData>::iterator iter = allstudentData.begin();
 
+	//myOutfile << "Writing this to a file.\n";
+	
+	// Uses the iterator to go through allstudentData and writes the information to the file
+	for (iter = allstudentData.begin(); iter != allstudentData.end(); ++iter){
+		std::string midterm1 = DoubleToString((*iter).midterm1);
+		std::string midterm2 = DoubleToString((*iter).midterm2);
+		std::string finalgrade = DoubleToString((*iter).finalgrade);
+	}
+
+	myOutfile.close();
 	return KP::SUCCESS;
 }
 
