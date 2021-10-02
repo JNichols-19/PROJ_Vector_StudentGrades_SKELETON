@@ -121,7 +121,14 @@ int calculateFinalGrade(std::vector<KP::studentData> &allstudentData) {
  *         SUCCESS
  */
 int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, char separator_char=KP::SEPERATOR_CHAR ) {
-	return int(0);
+	ofstream myOutfile; 
+	myOutfile.open(file, ios::in); // .open(filename, mode)
+
+	// Will return COULD_NOT_OPEN_FILE if the file isn't open after running .open()
+	if(!myOutfile.is_open()) {
+		return KP::COULD_NOT_OPEN_FILE;
+	}
+	return KP::SUCCESS;
 }
 
 //sorts studentdata based on SORT_TYPE
