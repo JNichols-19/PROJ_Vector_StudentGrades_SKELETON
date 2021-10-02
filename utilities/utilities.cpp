@@ -166,7 +166,6 @@ bool compareFinal(const KP::studentData& x, const KP::studentData& y) {
 	return x.finalgrade < y.finalgrade;
 }
 
-
 //sorts studentdata based on SORT_TYPE
 /***
  * 
@@ -179,6 +178,16 @@ int sortStudentData(std::vector<KP::studentData> &allstudentData,KP::SORT_TYPE s
 	// Checks if there are students
 	if(allstudentData.empty()) {
 			return KP::VECTOR_CONTAINS_NO_STUDENTS; 
+	}
+
+	// If the sort type is name, it will sort by name
+	if(st == KP::NAME) {
+		sort(allstudentData.begin(), allstudentData.end(), compareName);
+	}
+
+	// If the sort type is Final Grade, it will sort by that
+	if(st == KP::FINAL_GRADE) {
+		sort(allstudentData.begin(), allstudentData.end(), compareFinal);
 	}
 
 	return KP::SUCCESS;
