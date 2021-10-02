@@ -160,6 +160,12 @@ bool compareName(const KP::studentData& x, const KP::studentData& y) {
 	return x.name < y.name;
 }
 
+// Sort algorithm to final grades (compares final grade x and final grade y) 
+	// -> Will help sort students by highest/lowest grade
+bool compareFinal(const KP::studentData& x, const KP::studentData& y) {
+	return x.finalgrade < y.finalgrade;
+}
+
 
 //sorts studentdata based on SORT_TYPE
 /***
