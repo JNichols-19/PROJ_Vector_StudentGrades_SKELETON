@@ -154,6 +154,13 @@ int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, c
 	return KP::SUCCESS;
 }
 
+// Sort algorithm to compare name (compares name x and name y) 
+	// -> puts the names in alphabetical order
+bool compareName(const KP::studentData& x, const KP::studentData& y) {
+	return x.name < y.name;
+}
+
+
 //sorts studentdata based on SORT_TYPE
 /***
  * 
