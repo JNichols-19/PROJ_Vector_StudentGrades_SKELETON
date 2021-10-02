@@ -91,14 +91,13 @@ int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, ch
 		myStudentData.midterm2 = stringToInt(token.c_str());
 
 		// get finalgrade
-		// If statement? 
 		if(std::getline(ss, token, ' ')) {
+			std::getline(ss, token, ' ');
 			myStudentData.finalgrade = stringToInt(token.c_str());
 		}
-
-		allstudentData.push_back(myStudentData); // adds myStudentData to the back of allStudentData
-
+		//allstudentData.push_back(myStudentData); // adds myStudentData to the back of allStudentData
 	}
+
 	myInFile.close(); // close when gone through all of the file
 	return KP::SUCCESS;
 }
