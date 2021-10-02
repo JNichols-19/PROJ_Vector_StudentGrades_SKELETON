@@ -134,6 +134,11 @@ int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, c
 		return KP::COULD_NOT_OPEN_FILE;
 	}
 
+	// Checks if there are students
+	if(allstudentData.empty()) {
+			return KP::VECTOR_CONTAINS_NO_STUDENTS; 
+	}
+
 	myOutfile << "Writing this to a file.\n";
 	myOutfile.close();
 
