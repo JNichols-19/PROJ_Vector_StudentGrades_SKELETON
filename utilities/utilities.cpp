@@ -101,7 +101,7 @@ int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, ch
 		//allstudentData.push_back(myStudentData); // adds myStudentData to the back of allStudentData
 	}
 
-	myInFile.close(); // close when gone through all of the file
+	//myInFile.close(); // close when gone through all of the file
 	return KP::SUCCESS;
 }
 
@@ -127,7 +127,6 @@ int calculateFinalGrade(std::vector<KP::studentData> &allstudentData) {
 
 	return KP::SUCCESS;
 }
-//void extractFailingStudents(double failgrade = FAILGRADE);
 
 /***
  * Opens file, serializes data from allstudentData to file, closes file 
@@ -142,6 +141,8 @@ int calculateFinalGrade(std::vector<KP::studentData> &allstudentData) {
 int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, char separator_char/*=KP::SEPERATOR_CHAR*/) {
 	ofstream myOutfile; 
 	myOutfile.open(file, ios::out); // .open(filename, mode)
+
+
 
 	// Will return COULD_NOT_OPEN_FILE if the file isn't open after running .open()
 	if(!myOutfile.is_open()) {
@@ -160,12 +161,12 @@ int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, c
 
 	// Uses the iterator to go through allstudentData and writes the information to the file
 	for (iter = allstudentData.begin(); iter != allstudentData.end(); ++iter){
-		std::string midterm1 = DoubleToString((*iter).midterm1);
-		std::string midterm2 = DoubleToString((*iter).midterm2);
-		std::string finalgrade = DoubleToString((*iter).finalgrade);
+		std::string mid1 = DoubleToString((*iter).midterm1);
+		std::string mid2 = DoubleToString((*iter).midterm2);
+		std::string finalg = DoubleToString((*iter).finalgrade);
 
 		// what the iterator is checking for
-		myOutfile << (*iter).name << " " << midterm1 << " " << midterm2 << " " << finalgrade << "\n";
+		myOutfile << (*iter).name << " " << mid1 << " " << mid2 << " " << finalg << "\n";
 
 	}
 
@@ -175,13 +176,13 @@ int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, c
 
 // Sort algorithm to compare name (compares name x and name y) 
 	// -> puts the names in alphabetical order
-bool compareName(const KP::studentData& x, const KP::studentData& y) {
+bool compareName(KP::studentData& x,  KP::studentData& y) {
 	return x.name < y.name;
 }
 
 // Sort algorithm to final grades (compares final grade x and final grade y) 
 	// -> Will help sort students by highest/lowest grade
-bool compareFinal(const KP::studentData& x, const KP::studentData& y) {
+bool compareFinal(KP::studentData& x, KP::studentData& y) {
 	return x.finalgrade > y.finalgrade;
 }
 
