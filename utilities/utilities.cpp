@@ -154,5 +154,10 @@ int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, c
  *         SUCCESS
  */
 int sortStudentData(std::vector<KP::studentData> &allstudentData,KP::SORT_TYPE st) {
-	return int(0);
+	// Checks if there are students
+	if(allstudentData.empty()) {
+			return KP::VECTOR_CONTAINS_NO_STUDENTS; 
+	}
+	
+	return KP::SUCCESS;
 }
