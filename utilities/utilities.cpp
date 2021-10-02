@@ -57,6 +57,7 @@ double stringToDouble(const char *myString) {
  *         SUCCESS
  */
 int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, char separator_char /*=KP::SEPERATOR_CHAR*/) {
+	allstudentData.clear();
 	ifstream myInFile; // Reading file Use
 	myInFile.open(file, ios::in); // .open(filename, mode)
 
@@ -64,36 +65,36 @@ int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, ch
 	if(!myInFile.is_open()) {
 		return KP::COULD_NOT_OPEN_FILE;
 	}
-
+	
 	std::string line;
 	std::string token;
 	KP::studentData myStudentData; // Used KP:: because all constants are in namespace KP
 	stringstream ss;
 
+	
 	// Use stringstream to parse each line 
 	while (!myInFile.eof()) {
 	// get a line from the file (name, midterm1, midterm2, and possibly finalgrade)
-		std::getline(myInFile, line);
+		getline(myInFile, line);
 		ss.str(line);
 
 		// get rid of the old values
 		myStudentData.clear();
 
-
 		// get the name
-		std::getline(ss, myStudentData.name, ' ');
+		getline(ss, myStudentData.name, separator_char);
 
 		// get midterm1
-		std::getline(ss, token, ' ');
+		getline(ss, token, separator_char);
 		myStudentData.midterm1 = stringToInt(token.c_str());
 
 		// get midterm2
-		std::getline(ss, token, ' ');
+		getline(ss, token, separator_char);
 		myStudentData.midterm2 = stringToInt(token.c_str());
 
 		// get finalgrade
-		if(std::getline(ss, token, ' ')) {
-			std::getline(ss, token, ' ');
+		if(getline(ss, token, separator_char)) {
+			getline(ss, token, separator_char);
 			myStudentData.finalgrade = stringToInt(token.c_str());
 		}
 		//allstudentData.push_back(myStudentData); // adds myStudentData to the back of allStudentData
