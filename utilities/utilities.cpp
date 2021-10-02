@@ -57,7 +57,6 @@ double stringToDouble(const char *myString) {
  *         SUCCESS
  */
 int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, char separator_char /*=KP::SEPERATOR_CHAR*/) {
-	allstudentData.clear();
 	ifstream myInFile; // Reading file Use
 	myInFile.open(file, ios::in); // .open(filename, mode)
 
@@ -71,11 +70,13 @@ int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, ch
 	KP::studentData myStudentData; // Used KP:: because all constants are in namespace KP
 	stringstream ss;
 
-	
+	// clear the vector
+	//allstudentData.clear();
+
 	// Use stringstream to parse each line 
-	while (!myInFile.eof()) {
+	while (std::getline(myInFile, line)) {
 	// get a line from the file (name, midterm1, midterm2, and possibly finalgrade)
-		getline(myInFile, line);
+		ss.clear();
 		ss.str(line);
 
 		// get rid of the old values
@@ -181,7 +182,7 @@ bool compareName(const KP::studentData& x, const KP::studentData& y) {
 // Sort algorithm to final grades (compares final grade x and final grade y) 
 	// -> Will help sort students by highest/lowest grade
 bool compareFinal(const KP::studentData& x, const KP::studentData& y) {
-	return x.finalgrade < y.finalgrade;
+	return x.finalgrade > y.finalgrade;
 }
 
 //sorts studentdata based on SORT_TYPE
@@ -200,12 +201,12 @@ int sortStudentData(std::vector<KP::studentData> &allstudentData,KP::SORT_TYPE s
 
 	// If the sort type is name, it will sort by name
 	if(st == KP::NAME) {
-		sort(allstudentData.begin(), allstudentData.end(), compareName);
+		std::sort(allstudentData.begin(), allstudentData.end(), compareName);
 	}
 
 	// If the sort type is Final Grade, it will sort by that
-	if(st == KP::FINAL_GRADE) {
-		sort(allstudentData.begin(), allstudentData.end(), compareFinal);
+	else if(st == KP::FINAL_GRADE) {
+		std::sort(allstudentData.begin(), allstudentData.end(), compareFinal);
 	}
 
 	return KP::SUCCESS;
