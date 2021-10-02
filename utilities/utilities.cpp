@@ -56,7 +56,7 @@ double stringToDouble(const char *myString) {
  * @return COULD_NOT_OPEN_FILE
  *         SUCCESS
  */
-int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, char separator_char=KP::SEPERATOR_CHAR ) {
+int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, char separator_char=KP::SEPERATOR_CHAR) {
 	ifstream myInFile; // Reading file Use
 	myInFile.open(file, ios::in); // .open(filename, mode)
 
@@ -125,7 +125,7 @@ int calculateFinalGrade(std::vector<KP::studentData> &allstudentData) {
  *         COULD_NOT_OPEN_FILE
  *         SUCCESS
  */
-int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, char separator_char=KP::SEPERATOR_CHAR ) {
+int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, char separator_char=KP::SEPERATOR_CHAR) {
 	ofstream myOutfile; 
 	myOutfile.open(file, ios::in); // .open(filename, mode)
 
@@ -158,6 +158,6 @@ int sortStudentData(std::vector<KP::studentData> &allstudentData,KP::SORT_TYPE s
 	if(allstudentData.empty()) {
 			return KP::VECTOR_CONTAINS_NO_STUDENTS; 
 	}
-	
+
 	return KP::SUCCESS;
 }
