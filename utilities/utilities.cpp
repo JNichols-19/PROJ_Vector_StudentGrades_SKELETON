@@ -72,12 +72,13 @@ int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, ch
 
 	// Use stringstream to parse each line 
 	while (!myInFile.eof()) {
+	// get a line from the file (name, midterm1, midterm2, and possibly finalgrade)
+		std::getline(myInFile, line);
+		ss.str(line);
+
 		// get rid of the old values
 		myStudentData.clear();
 
-		// get a line from the file (name, midterm1, midterm2, and possibly finalgrade)
-		std::getline(myInFile, line);
-		ss.str(line);
 
 		// get the name
 		std::getline(ss, myStudentData.name, ' ');
