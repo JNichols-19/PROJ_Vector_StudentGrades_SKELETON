@@ -112,6 +112,14 @@ int calculateFinalGrade(std::vector<KP::studentData> &allstudentData) {
 			return KP::VECTOR_CONTAINS_NO_STUDENTS; 
 	}
 
+	// Creates an iterator to go through the vector of students
+	std::vector<KP::studentData>::iterator iter = allstudentData.begin();
+
+	// Calculates finalGrade for each student (finalgrade comes from constants.h)
+	for (iter = allstudentData.begin(); iter != allstudentData.end(); ++iter){ // Goes through allstudentData
+		(*iter).finalgrade = ((*iter).midterm1+(*iter).midterm2)/2; //calculates the grade(s)
+	}
+
 	return KP::SUCCESS;
 }
 //void extractFailingStudents(double failgrade = FAILGRADE);
