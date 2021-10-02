@@ -82,25 +82,25 @@ int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, ch
 		myStudentData.clear();
 
 		// get the name
-		getline(ss, myStudentData.name, separator_char);
+		std::getline(ss, myStudentData.name, ' ');
 
 		// get midterm1
-		getline(ss, token, separator_char);
+		std::getline(ss, token, ' ');
 		myStudentData.midterm1 = stringToInt(token.c_str());
 
 		// get midterm2
-		getline(ss, token, separator_char);
+		std::getline(ss, token, ' ');
 		myStudentData.midterm2 = stringToInt(token.c_str());
 
 		// get finalgrade
-		if(getline(ss, token, separator_char)) {
-			getline(ss, token, separator_char);
+		if(std::getline(ss, token, ' ')) {
+			std::getline(ss, token, ' ');
 			myStudentData.finalgrade = stringToInt(token.c_str());
 		}
-		//allstudentData.push_back(myStudentData); // adds myStudentData to the back of allStudentData
+		allstudentData.push_back(myStudentData); // adds myStudentData to the back of allStudentData
 	}
 
-	//myInFile.close(); // close when gone through all of the file
+	myInFile.close(); // close when gone through all of the file
 	return KP::SUCCESS;
 }
 
