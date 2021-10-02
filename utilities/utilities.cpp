@@ -106,7 +106,12 @@ int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, ch
  *         SUCCESS
  */
 int calculateFinalGrade(std::vector<KP::studentData> &allstudentData) {
-	return int(0);
+	// If there are no students it returns KP::VECTOR_CONTAINS_NO_STUDENTS
+	if(allstudentData.empty()) {
+			return KP::VECTOR_CONTAINS_NO_STUDENTS; 
+	}
+
+	return KP::SUCCESS;
 }
 //void extractFailingStudents(double failgrade = FAILGRADE);
 
@@ -128,6 +133,10 @@ int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, c
 	if(!myOutfile.is_open()) {
 		return KP::COULD_NOT_OPEN_FILE;
 	}
+
+	myOutfile << "Writing this to a file.\n";
+	myOutfile.close();
+
 	return KP::SUCCESS;
 }
 
