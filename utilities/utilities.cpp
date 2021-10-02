@@ -57,21 +57,20 @@ double stringToDouble(const char *myString) {
  *         SUCCESS
  */
 int readFile(std::string &file, std::vector<KP::studentData> &allstudentData, char separator_char /*=KP::SEPERATOR_CHAR*/) {
-	ifstream myInFile; // Reading file Use
-	myInFile.open(file, ios::in); // .open(filename, mode)
-
-	// Will return COULD_NOT_OPEN_FILE if the file isn't open after running .open()
-	if(!myInFile.is_open()) {
-		return KP::COULD_NOT_OPEN_FILE;
-	}
-	
 	std::string line;
 	std::string token;
 	KP::studentData myStudentData; // Used KP:: because all constants are in namespace KP
 	stringstream ss;
+	ifstream myInFile; // Reading file Use
 
 	// clear the vector
-	//allstudentData.clear();
+	allstudentData.clear();
+
+	myInFile.open(file, ios::in); // .open(filename, mode)
+	// Will return COULD_NOT_OPEN_FILE if the file isn't open after running .open()
+	if(!myInFile.is_open()) {
+		return KP::COULD_NOT_OPEN_FILE;
+	}
 
 	// Use stringstream to parse each line 
 	while (std::getline(myInFile, line)) {
@@ -140,18 +139,17 @@ int calculateFinalGrade(std::vector<KP::studentData> &allstudentData) {
  */
 int writeFile(std::string &file, std::vector<KP::studentData> &allstudentData, char separator_char/*=KP::SEPERATOR_CHAR*/) {
 	ofstream myOutfile; 
-	myOutfile.open(file, ios::out); // .open(filename, mode)
-
-
-
-	// Will return COULD_NOT_OPEN_FILE if the file isn't open after running .open()
-	if(!myOutfile.is_open()) {
-		return KP::COULD_NOT_OPEN_FILE;
-	}
 
 	// Checks if there are students
 	if(allstudentData.empty()) {
 			return KP::VECTOR_CONTAINS_NO_STUDENTS; 
+	}
+
+	myOutfile.open(file, ios::out); // .open(filename, mode)
+
+	// Will return COULD_NOT_OPEN_FILE if the file isn't open after running .open()
+	if(!myOutfile.is_open()) {
+		return KP::COULD_NOT_OPEN_FILE;
 	}
 
 	// Creates an iterator to go through the vector of students
